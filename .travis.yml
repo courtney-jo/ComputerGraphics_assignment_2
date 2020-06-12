@@ -1,0 +1,27 @@
+language: cpp
+
+sudo: required
+
+os:
+  - linux
+
+compiler:
+  - gcc
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      sudo apt-get update;
+
+      sudo apt-get install -qq build-essential xorg-dev libglu1-mesa-dev libglew-dev libglm-dev;
+      sudo apt-get install -qq cmake;
+      sudo apt-get install -qq libsdl2-dev;
+      sudo apt-get install -qq libfftw3-dev;
+    fi
+        
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+
+script:
+  - make
